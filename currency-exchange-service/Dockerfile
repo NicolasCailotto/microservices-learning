@@ -1,0 +1,13 @@
+#pull base image
+FROM openjdk:8-jre-alpine
+
+#maintainer
+MAINTAINER cailotto.nicolas@gmail.com
+
+#expose port 8080
+EXPOSE 8080
+
+ADD target/*.jar /currency-exchange-service.jar
+
+#default command
+CMD java -jar /currency-exchange-service.jar

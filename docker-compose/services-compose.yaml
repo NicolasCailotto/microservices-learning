@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+
+  eureka-server:
+    image: ncailotto/microservices-eureka-server:latest
+    container_name: "eureka-server"
+    hostname: 'eureka-server'
+    restart: always
+    # ports:
+    #   - 8761:8080
+    expose:
+      - 8080
+    volumes:
+      - ./config/eureka-server.yaml:/config/application.properties
+
+  netflix-zuul-api-gateway-server:
+    image: ncailotto/microservices-zuul-api-gateway:latest
+    container_name: "netflix-zuul-api-gateway-server"
+    hostname: 'netflix-zuul-api-gateway-server'
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config/zuul-gateway.yaml:/config/application.properties
+    depends_on:
+      - eureka-server
+
+  currency-conversion-service:
+    image: ncailotto/microservices-conversion-service:latest
+    container_name: "currency-conversion-service"
+    hostname: 'currency-conversion-service'
+    restart: always
+    # ports:
+    #   - 8100:8080
+    expose:
+      - 8080
+    volumes:
+      - ./config/conversion-service.yaml:/config/application.properties
+    depends_on:
+      - eureka-server
+    links:
+      - netflix-zuul-api-gateway-server
+
+  currency-exchange-service:
+    image: ncailotto/microservices-exchange-service:h2
+    container_name: "exchange-service"
+    hostname: 'currency-exchange-service'
+    restart: always
+    # ports:
+    #   - 8000:8080
+    expose:
+      - 8000
+    volumes:
+      - ./config/excange-service.yaml:/config/application.properties
+    depends_on:
+      - eureka-server
+    links:
+      - eureka-server
