@@ -57,10 +57,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <!-- NO HACE FALTA RIBBON PORQUE YA LO TRAE EL EUREKA SERVER
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
     <dependencyManagement>
