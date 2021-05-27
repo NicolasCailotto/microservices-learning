@@ -20,7 +20,7 @@ public class ExchangeValue {
     @Column(name = "conversion_multiple")
     private BigDecimal conversionMultiple;
     @Column(name = "port")
-    private int port;
+    private int exchangeServicePort;
 
     //default conatructor
     public ExchangeValue() {
@@ -36,12 +36,12 @@ public class ExchangeValue {
     }
 
     //generating getters and setters
-    public int getPort() {
-        return port;
+    public int getExchangeServicePort() {
+        return exchangeServicePort;
     }
 
-    public void setPort(int port) {
-        this.port = port;
+    public void setExchangeServicePort(int exchangeServicePort) {
+        this.exchangeServicePort = exchangeServicePort;
     }
 
     public Long getId() {

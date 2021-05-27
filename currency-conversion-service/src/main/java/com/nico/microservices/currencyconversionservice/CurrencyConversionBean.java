@@ -9,14 +9,15 @@ public class CurrencyConversionBean {
     private BigDecimal conversionMultiple;
     private BigDecimal quantity;
     private BigDecimal totalCalculatedAmount;
-    private int port;
+    private int exchangeServicePort;
+    private int conversionServicePort;
 
     //default constructor
     public CurrencyConversionBean() {
     }
 
     //creating constructor
-    public CurrencyConversionBean(Long id, String from, String to, BigDecimal conversionMultiple, BigDecimal quantity, BigDecimal totalCalculatedAmount, int port) {
+    public CurrencyConversionBean(Long id, String from, String to, BigDecimal conversionMultiple, BigDecimal quantity, BigDecimal totalCalculatedAmount, int exchangeServicePort, int conversionServicePort) {
         super();
         this.id = id;
         this.from = from;
@@ -24,7 +25,8 @@ public class CurrencyConversionBean {
         this.conversionMultiple = conversionMultiple;
         this.quantity = quantity;
         this.totalCalculatedAmount = totalCalculatedAmount;
-        this.port = port;
+        this.exchangeServicePort = exchangeServicePort;
+        this.conversionServicePort = conversionServicePort;
     }
 
     //creating setters and getters
@@ -76,11 +78,19 @@ public class CurrencyConversionBean {
         this.totalCalculatedAmount = totalCalculatedAmount;
     }
 
-    public int getPort() {
-        return port;
+    public int getExchangeServicePort() {
+        return exchangeServicePort;
     }
 
-    public void setPort(int port) {
-        this.port = port;
+    public void setExchangeServicePort(int exchangeServicePort) {
+        this.exchangeServicePort = exchangeServicePort;
+    }
+
+    public int getConversionServicePort() {
+        return conversionServicePort;
+    }
+
+    public void setConversionServicePort(int conversionServicePort) {
+        this.conversionServicePort = conversionServicePort;
     }
 }

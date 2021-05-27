@@ -17,12 +17,12 @@ public class CurrencyExchangeController {
     @Autowired
     private ExchangeValueRepository repository;
 
-    @GetMapping("/currency-exchange/from/{from}/to/{to}") //where {from} and {to} are path variable
-    public ExchangeValue retrieveExchangeValue(@PathVariable String from, @PathVariable String to) { //from map to USD and to map to INR
+    @GetMapping("/currency-exchange/from/{from}/to/{to}")
+    public ExchangeValue retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
         //taking the exchange value
         ExchangeValue exchangeValue = repository.findByFromAndTo(from, to);
         //picking port from the environment
-        exchangeValue.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
+        exchangeValue.setExchangeServicePort(Integer.parseInt(environment.getProperty("local.server.port")));
         return exchangeValue;
     }
 }
